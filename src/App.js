@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
+import { minus, plus } from "./actions";
 
 function App() {
+  const myState = useSelector((state) => state.initialno);
+  const user = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={() => dispatch(plus())}>plus</button>
+      <p>{myState}</p>
+      <button onClick={() => dispatch(minus())}>minus</button>
+      {user.map((e, i) => {
+        return (
+          <div>
+            <p key={i}>
+              <b>name = </b>
+              {e.name}
+            </p>
+            <p>
+              <b>age = </b>
+              {e.age}
+            </p>
+            <p>
+              <b>email = </b>
+              {e.email}
+            </p>
+            <p>======================</p>
+          </div>
+        );
+      })}
+    </>
   );
 }
 
