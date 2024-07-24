@@ -9,3 +9,9 @@ export const minus = () => {
     type: "MINUS",
   };
 };
+
+export const reset = () => {
+  return {
+    type: "RESET",
+  };
+}
